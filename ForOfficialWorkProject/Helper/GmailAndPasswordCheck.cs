@@ -13,6 +13,9 @@ namespace ForOfficialWorkProject.Helper
                 _ => throw new ArgumentException(nameof(gp))
             };
 
+            if (result is null)
+                return null!;
+
             var sb = new StringBuilder();
             return sb.Append(result).ToString();
         }
@@ -30,47 +33,9 @@ namespace ForOfficialWorkProject.Helper
                     alphaCount++;
             }
              //UPDATE
-            if (alphaCount <= 4 && numberCount <= 4)
-                return "Wrong";
-            return text;
+            if (alphaCount >= 4 && numberCount >= 4)
+                return text;
+            return null!;
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-#region Obselote method
-//[Obsolete("This method is work cannot", true)]
-//public static string GBResult(string text)
-//{
-//    int numberCount = 0;
-//    int alphaCount = 0;
-
-//    for (int i = 0; i < text.Length; i++)
-//    {
-//        if (((char)text[i] >= 48 || (char)text[i] <= 57))
-//        {
-//            numberCount += 1;
-//            if (numberCount >= 4)
-//                Console.WriteLine("Dogru giris");
-//        }
-//        else if ((char)text[i] >= 65 || (char)text[i] <= 90 || (char)text[i] >= 97 || (char)text[i] <= 122)
-//        {
-//            alphaCount += 1;
-//            if (alphaCount >= 4)
-//                Console.WriteLine("Dogru Giris");
-//        }
-//    }
-//    return "";
-//}
-#endregion

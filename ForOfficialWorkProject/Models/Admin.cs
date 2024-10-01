@@ -1,39 +1,20 @@
-﻿namespace ForOfficialWorkProject.Models
+﻿using ForOfficialWorkProject.MS;
+
+namespace ForOfficialWorkProject.Models
 {
-    public static partial class Admin
+    public class Admin
     {
-        /*Admin class => {
-1)prop => name,surname,mail
-2)Method => Add, Delete,Edit, Find(filter [1.name, 2.#code]), BudgetInOrOut.
-}*/
-
-    }
-
-    public static partial class Admin<T>
-    {
-        public static void Add(in string path, T obj)
+        public Admin(string name, string surname, GmailService gmailService)
         {
-            throw new NotImplementedException();
+            this.name = name;
+            this.surname = surname;
+            this.gmailService = gmailService;
         }
 
-        public static void Delete(in string path, T obj)
-        {
-            throw new NotImplementedException();
-        }
+        public string name { get; init; } = default!;
+        public string surname { get; init; } = default!;
+        public GmailService gmailService { get; set; } = default!;
 
-        public static void Edit(in string path, T obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void Find(in string path, T obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void BudgetInOrOut(in string path)
-        {
-            throw new NotImplementedException();
-        }
+        public override string ToString() => $"{name} {surname} {gmailService}\n";
     }
 }

@@ -1,4 +1,5 @@
-﻿using ForOfficialWorkProject.Helper;
+﻿using ForOfficialWorkProject.Exceptions;
+using ForOfficialWorkProject.Helper;
 
 namespace ForOfficialWorkProject.MS
 {
@@ -7,7 +8,6 @@ namespace ForOfficialWorkProject.MS
         Gmail,
         Password
     }
-
 
     public class GmailService
     {
@@ -18,9 +18,11 @@ namespace ForOfficialWorkProject.MS
         {
             this.gmail = GmailAndPasswordCheck.GPCheck(GP.Gmail, gmail);
             this.password = GmailAndPasswordCheck.GPCheck(GP.Password, password);
+
+            if (this.gmail is null || this.password is null)
+                throw new ArgumentMailNullException("Gmail or Password is null");
         }
 
         public override string ToString() => $"{gmail} {password}\n";
     }
 }
-
