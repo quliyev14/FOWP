@@ -9,40 +9,28 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        /*Admin class => {
-        1)prop => name,surname,mail
-        2)Method => Add, Delete, Find(filter [1.name, 2.#code]), BudgetInOrOut.
-
-
-        Product class => {
-        1)prop => name,firma-name,#code,color,age-range or size-range,count,count in packet,price
-        }
-
-        User class => {
-
-        }
-
-
-
-        //}*/
-        //string s = "elgun1234";
+        string path_product = "product.json";
+        string main_log = "main.log";
 
         //Console.WriteLine(new GmailService("elgun2003@gmail.com","eeee1111"));
 
-        //var product = new Product(
-        //       name: "T-Shirt",
-        //       firmaName: "FashionCo",
-        //       code: "F1234",
-        //       color: "Blue",
-        //       ageRangeMin: 5,
-        //       ageRangeMax: 16,
-        //       count: 100,
-        //       countInPacket: 10,
-        //       price: 19.99
-        //   );
+        var product = new Product(
+               name: "Jeans",
+               firmaName: "F-Star",
+               code: "F1234",
+               color: "Dark blue",
+               ageRangeMin: 4,
+               ageRangeMax: 9,
+               count: 20,
+               countInPacket: 6,
+               price: 5
+           );
+
         //Console.WriteLine(product.ToString());
 
-        Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
+        //Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
+
+        AdminManeger.Add(in path_product, in main_log, product);
 
         Console.ReadKey();
     }

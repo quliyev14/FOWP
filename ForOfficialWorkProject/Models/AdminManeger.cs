@@ -1,34 +1,33 @@
-﻿using System;
-namespace ForOfficialWorkProject.Models
+﻿namespace ForOfficialWorkProject.Models
 {
     public static class AdminManeger
     {
-        public static class Admin<T>
+        public static void Add(in string path, in string pathLog, Product obj)
         {
-            public static void Add(in string path, T obj)
-            {
-                throw new NotImplementedException();
-            }
+            if (obj is null)
+                throw new ArgumentNullException("Object is null");
+            else
+                DB.DB.JsonWrite(path, pathLog, obj);
+        }
 
-            public static void Delete(in string path, T obj)
-            {
-                throw new NotImplementedException();
-            }
+        public static void Delete(in string path, Product obj)
+        {
+            throw new NotImplementedException();
+        }
 
-            public static void Edit(in string path, T obj)
-            {
-                throw new NotImplementedException();
-            }
+        public static void Edit(in string path, Product obj)
+        {
+            throw new NotImplementedException();
+        }
 
-            public static void Find(in string path, T obj)
-            {
-                throw new NotImplementedException();
-            }
+        public static void Find(in string path, Product obj)
+        {
+            throw new NotImplementedException();
+        }
 
-            public static void BudgetInOrOut(in string path)
-            {
-                throw new NotImplementedException();
-            }
+        public static void BudgetInOrOut(in string path)
+        {
+            throw new NotImplementedException();
         }
     }
 }
