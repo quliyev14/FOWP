@@ -5,6 +5,10 @@ namespace ForOfficialWorkProject.Models
     //1)prop => name,firma-name,#code,color,age-range or size-range,count,count in packet,price
     public sealed class Product
     {
+        private static int ID = 0;
+
+        public Product() { Id = Interlocked.Increment(ref ID); }
+
         public Product(string? name, string? firmaName, string? code,
                        string? color, int ageRangeMin, int ageRangeMax,
                        int count, int countInPacket, double price)
@@ -15,6 +19,7 @@ namespace ForOfficialWorkProject.Models
                 countInPacket < 0 &&
                 price < 0)
                 throw new ArgumentException("This have Wrong !!!");
+            Id = Interlocked.Increment(ref ID);
             Name = name;
             FirmaName = firmaName;
             Code = code;
@@ -26,6 +31,7 @@ namespace ForOfficialWorkProject.Models
             Price = price;
         }
 
+        public int Id { get; set; } = default!;
         public string? Name { get; init; } = default!;
         public string? FirmaName { get; init; } = default;
         public string? Code { get; set; } = default!;
@@ -36,7 +42,7 @@ namespace ForOfficialWorkProject.Models
         public int CountInPacket { get; set; } = default!;
         public double Price { get; set; } = default!;
 
-        public override string ToString() => $"{Name} /{FirmaName} /Code: {Code} " +
+        public override string ToString() => $"{Id}. {Name} /{FirmaName} /Code: {Code} " +
                                              $"/Color: {Color} /Min age: {AgeRangeMin} /Max age: {AgeRangeMax} " +
                                              $"/Count: {Count} /Count in packet: {CountInPacket} /Price: {Price}\n";
     }
