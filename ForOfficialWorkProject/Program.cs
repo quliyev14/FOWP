@@ -20,21 +20,21 @@ internal class Program
 
         var product = new Product(
                name: "Jeans",
-               firmaName: "MAMHAYF",
-               code: "4520",
-               color: "Black",
-               ageRangeMin: 6,
-               ageRangeMax: 10,
-               count: 12,
-               countInPacket: 5,
-               price: 6.15
+               firmaName: "Zara",
+               code: "225-1",
+               color: "Blue",
+               ageRangeMin: 11,
+               ageRangeMax: 15,
+               count: 30,
+               countInPacket: 6,
+               price: 4.97
            );
 
         //Console.WriteLine(product.ToString());
 
         //Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
 
-        AdminManeger.Add(in path_product, in main_log, in adress, in mail_subject, product);
+        AdminManeger.Add(path_product, main_log, adress, mail_subject, product);
 
 
 
