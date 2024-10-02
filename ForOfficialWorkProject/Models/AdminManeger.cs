@@ -11,7 +11,20 @@ namespace ForOfficialWorkProject.Models
             else
             {
                 DB.DB.JsonWrite(path, pathLog, obj);
-                Service.MailIsSend(mailAdress, mailSubject,$"{obj}");
+
+                Service.MailIsSend(mailAdress,
+                                   mailSubject,
+                                   $"{obj.Id}. " +
+                                   $" Code:{obj.Code}  " +
+                                   $" Firma name: {obj.FirmaName}  " +
+                                   $" Name: {obj.Name}  " +
+                                   $" Color: {obj.Color}  " +
+                                   $" Min age: {obj.AgeRangeMin}  " +
+                                   $" Max age: {obj.AgeRangeMax}  " +
+                                   $" Count: {obj.Count}  " +
+                                   $" Ici: {obj.CountInPacket}-li,lu  " +
+                                   $" Umumi gelen eded sayi: [{obj.Count * obj.CountInPacket}]  " +
+                                   $" Price: {obj.Price:C}  ");
             }
         }
 

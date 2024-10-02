@@ -20,14 +20,14 @@ internal class Program
 
         var product = new Product(
                name: "Jeans",
-               firmaName: "Zilli",
-               code: "F1234",
+               firmaName: "MAMHAYF",
+               code: "4520",
                color: "Black",
-               ageRangeMin: 30,
-               ageRangeMax: 35,
-               count: 30,
-               countInPacket: 6,
-               price: 5.5
+               ageRangeMin: 6,
+               ageRangeMax: 10,
+               count: 12,
+               countInPacket: 5,
+               price: 6.15
            );
 
         //Console.WriteLine(product.ToString());
