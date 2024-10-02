@@ -1,8 +1,8 @@
 ﻿global using System;
 global using System.Text;
 global using System.Text.Json;
-using System.Net;
-using System.Net.Mail;
+global using System.Net;
+global using System.Net.Mail;
 using ForOfficialWorkProject.Helper;
 using ForOfficialWorkProject.Models;
 using ForOfficialWorkProject.MS;
@@ -12,7 +12,7 @@ internal class Program
     private static void Main(string[] args)
     {
         string path_product = "product.json";
-        string main_log = "main.log";
+        string main_log = "Main.log";
         string adress = "elgun.q2003@gmail.com";
         string mail_subject = "Yeni gelen mallarin siyahisi";
 
@@ -34,7 +34,7 @@ internal class Program
 
         //Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
 
-        AdminManeger.Add(in path_product, in main_log, adress, mail_subject, product);
+        AdminManeger.Add(in path_product, in main_log, in adress, in mail_subject, product);
 
 
 

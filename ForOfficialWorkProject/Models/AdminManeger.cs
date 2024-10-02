@@ -11,7 +11,7 @@ namespace ForOfficialWorkProject.Models
             else
             {
                 DB.DB.JsonWrite(path, pathLog, obj);
-                Service.MailIsSend(mailAdress, 587, mailSubject,$"{obj}");
+                Service.MailIsSend(mailAdress, mailSubject,$"{obj}");
             }
         }
 

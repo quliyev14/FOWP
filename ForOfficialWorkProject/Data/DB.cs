@@ -29,7 +29,7 @@ namespace ForOfficialWorkProject.DB
             ? NetJSON.NetJSON.Deserialize<List<T>>(File.ReadAllText(path: path))
             : throw new FileNotFoundException(nameof(path));
 
-        public static void ProductWriteLog(string log, Product obj)
+        public static void ProductWriteLog(in string log, Product obj)
         {
             using (var sw = new StreamWriter(log))
                 sw.WriteLine($"packet: {obj.Count} " +
