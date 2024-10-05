@@ -28,11 +28,11 @@ namespace ForOfficialWorkProject.Helper
             for (int i = 0; i < text.Length; i++)
             {
                 if (char.IsDigit(text[i]))
-                    numberCount++;
+                    ++numberCount;
                 else if (char.IsLetter(text[i]))
-                    alphaCount++;
+                    ++alphaCount;
             }
-             //UPDATE
+            //UPDATE
             if (alphaCount >= 4 && numberCount >= 4)
                 return text;
             return null!;
