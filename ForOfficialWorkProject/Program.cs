@@ -36,7 +36,7 @@ internal class Program
 
         //AdminManeger.Add(path_product, main_log, adress, mail_subject, product);
         //AdminManeger.ALlShow(path_product);
-        AdminManeger.Find(path_product, "Kofta");
+        //AdminManeger.Find(path_product, "a");
 
         Console.ReadKey();
     }
