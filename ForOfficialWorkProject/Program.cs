@@ -19,15 +19,15 @@ internal class Program
         //Console.WriteLine(new GmailService("elgun2003@gmail.com","eeee1111"));
 
         var product = new Product(
-               name: "Sport",
-               firmaName: "KONPAK GES",
-               code: "211",
-               color: "Black",
-               ageRangeMin: 13,
-               ageRangeMax: 16,
+               name: "Kofta",
+               firmaName: "F-star",
+               code: "F2103",
+               color: "Blue",
+               ageRangeMin: 4,
+               ageRangeMax: 9,
                count: 20,
-               countInPacket: 4,
-               price: 4.093
+               countInPacket: 6,
+               price: 4
            );
 
         //Console.WriteLine(product.ToString());
@@ -35,8 +35,8 @@ internal class Program
         //Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
 
         //AdminManeger.Add(path_product, main_log, adress, mail_subject, product);
-        AdminManeger.ALlShow(path_product);
-
+        //AdminManeger.ALlShow(path_product);
+        AdminManeger.Find(path_product, "Kofta");
 
         Console.ReadKey();
     }

@@ -22,18 +22,18 @@ namespace ForOfficialWorkProject.Helper
 
         private static string GBResult(string text)
         {
-            int numberCount = 0;
-            int alphaCount = 0;
+            int digitCount = 0;
+            int letterCount = 0;
 
             for (int i = 0; i < text.Length; i++)
             {
                 if (char.IsDigit(text[i]))
-                    ++numberCount;
+                    ++digitCount;
                 else if (char.IsLetter(text[i]))
-                    ++alphaCount;
+                    ++letterCount;
             }
             //UPDATE
-            if (alphaCount >= 4 && numberCount >= 4)
+            if (letterCount >= 4 && digitCount >= 4)
                 return text;
             return null!;
         }

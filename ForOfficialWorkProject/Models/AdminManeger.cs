@@ -16,7 +16,7 @@ namespace ForOfficialWorkProject.Models
             th.Start();
         }
 
-        public static void AddWithThread(string path, string pathLog, string mailAdress, string mailSubject, Product @object)
+        private static void AddWithThread(string path, string pathLog, string mailAdress, string mailSubject, Product @object)
         {
             DB.DB.JsonWrite(path, pathLog, @object);
 
@@ -45,18 +45,21 @@ namespace ForOfficialWorkProject.Models
             throw new NotImplementedException();
         }
 
-        public static void Find(in string path, Product @object)
+        public static void Find(in string path, string name) => DB.DB.JsonRead<Product>(path)!
+                                                                .Where(p => p.Name!.Contains(name))
+                                                                .ToList()
+                                                                .ForEach(p => Console.WriteLine($"{p}"));
+        public static void ALlShow(string path)
         {
-            throw new NotImplementedException();
-        }
+            var thread = new Thread(() =>
+            {
+                var products = File.Exists(path)
+                ? DB.DB.JsonRead<Product>(path)
+                : throw new FileNotFoundException(nameof(path));
 
-        public static void ALlShow(in string path)
-        {
-            var products = File.Exists(path)
-            ? DB.DB.JsonRead<Product>(path)
-            : throw new FileNotFoundException(nameof(path));
-
-            products!.ForEach(p => Console.WriteLine($"{p}"));
+                products!.ForEach(p => Console.WriteLine($"{p}"));
+            });
+            thread.Start();
         }
 
         public static void BudgetInOrOut(in string path)
