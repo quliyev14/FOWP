@@ -4,35 +4,39 @@ namespace ForOfficialWorkProject.Models
 {
     public static class AdminManeger
     {
-        public static void Add(string path, string pathLog, string mailAdress, string mailSubject, Product @object)
+        public static void Add(string xlpath, string log, string jsonpath, string pathLog, string mailAdress, string mailSubject, List<Product> products)
         {
-            if (@object is null)
+            if (products is null)
                 throw new ArgumentNullException("Object is null");
 
             var th = new Thread(() =>
             {
-                AddWithThread(path, pathLog, mailAdress, mailSubject, @object);
+                AddWithThread(xlpath, log, jsonpath, pathLog, mailAdress, mailSubject, products);
             });
             th.Start();
         }
 
-        private static void AddWithThread(string path, string pathLog, string mailAdress, string mailSubject, Product @object)
+        private static void AddWithThread(string xlpath, string log, string jsonpath, string pathLog, string mailAdress, string mailSubject, List<Product> products)
         {
-            DB.DB.JsonWrite(path, pathLog, @object);
+            DB.DB.JsonWrite(jsonpath, log, products);
+            DB.DB.XlWrite(xlpath, jsonpath);
 
-            Service.MailIsSend(mailAdress,
-                               mailSubject,
-                               $" {@object.Id}.  " +
-                               $" Code:{@object.Code}  " +
-                               $" Firma name: {@object.FirmaName}  " +
-                               $" Name: {@object.Name}  " +
-                               $" Color: {@object.Color}  " +
-                               $" Min age: {@object.AgeRangeMin}  " +
-                               $" Max age: {@object.AgeRangeMax}  " +
-                               $" Count: {@object.Count}  " +
-                               $" Ici: {@object.CountInPacket}-li,lu  " +
-                               $" Umumi gelen eded sayi: [{@object.Count * @object.CountInPacket}]  " +
-                               $" Price: {@object.Price:C}  ");
+            foreach (var product in products)
+            {
+                Service.MailIsSend(mailAdress,
+                                   mailSubject,
+                                   $" {product.Id}.  " +
+                                   $" Code:{product.Code}  " +
+                                   $" Firma name: {product.Firma}  " +
+                                   $" Name: {product.Name}  " +
+                                   $" Color: {product.Color}  " +
+                                   $" Min age: {product.AgeRangeMin}  " +
+                                   $" Max age: {product.AgeRangeMax}  " +
+                                   $" Count: {products.Count}  " +
+                                   $" Ici: {product.CountInPacket}-li,lu  " +
+                                   $" Umumi gelen eded sayi: [{product.Count * product.CountInPacket}]  " +
+                                   $" Price: {product.Price:C}  ");
+            }
         }
 
         public static void Delete(in string path, Product @object)
@@ -45,12 +49,14 @@ namespace ForOfficialWorkProject.Models
             throw new NotImplementedException();
         }
 
-        public static void Find(in string path, string name) => DB.DB.JsonRead<Product>(path)!
-                                                                .Where(p => p.Name!.Contains(name))
-                                                                .ToList()
-                                                                .ForEach(p => Console.WriteLine($"{p}"));
+        public static void Find(in string xlpath, string name)
+        {
+            DB.DB.XlRead(xlpath);
+
+        }
+
         public static void AllShow(string path)
-        { 
+        {
             var thread = new Thread(() =>
             {
                 var products = File.Exists(path)

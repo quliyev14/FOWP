@@ -20,7 +20,7 @@ namespace ForOfficialWorkProject.Models
             //Id = Interlocked.Increment(ref ID);
             Id = Guid.NewGuid().ToString();
             Name = name;
-            FirmaName = firmaName;
+            Firma = firmaName;
             Code = code;
             Color = color;
             AgeRangeMin = ageRangeMin;
@@ -32,7 +32,7 @@ namespace ForOfficialWorkProject.Models
 
         public string Id { get; set; } = default!;
         public string? Name { get; init; } = default!;
-        public string? FirmaName { get; init; } = default;
+        public string? Firma { get; init; } = default;
         public string? Code { get; set; } = default!;
         public string? Color { get; init; } = default!;
         public int AgeRangeMin { get; init; } = default!;
@@ -40,8 +40,8 @@ namespace ForOfficialWorkProject.Models
         public int Count { get; set; } = default!;
         public int CountInPacket { get; set; } = default!;
         public double Price { get; set; } = default!;
-
-        public override string ToString() => $"{Id}. {Name} /{FirmaName} /Code: {Code} " +
+         
+        public override string ToString() => $"{Id}. {Name} /{Firma} /Code: {Code} " +
                                              $"/Color: {Color} /Min age: {AgeRangeMin} /Max age: {AgeRangeMax} " +
                                              $"/Count: {Count} /Count in packet: {CountInPacket} /Price: {Price}\n";
     }
