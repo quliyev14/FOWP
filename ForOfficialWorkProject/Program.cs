@@ -31,7 +31,8 @@ internal class Program
         //Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
 
         //AdminManeger.Add(path_xl, products_log, path_product, products_log, adress, mail_subject, products);
-        DB.XlRead(path_xl);
+        //DB.XlRead(path_xl);
+        AdminManeger.AllShow(path_product);
         //AdminManeger.ALlShow(path_product);
         //AdminManeger.Find(path_product, "a");
 

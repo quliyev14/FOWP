@@ -57,16 +57,12 @@ namespace ForOfficialWorkProject.Models
 
         public static void AllShow(string path)
         {
-            var thread = new Thread(() =>
-            {
-                var products = File.Exists(path)
-                ? DB.DB.JsonRead<Product>(path)!.ToList()
-                ?? throw new InvalidOperationException("Products could not be read!")
-                : throw new FileNotFoundException(nameof(path));
+            var products = File.Exists(path)
+            ? DB.DB.JsonRead<Product>(path)!.ToList()
+            ?? throw new InvalidOperationException("Products could not be read!")
+            : throw new FileNotFoundException(nameof(path));
 
-                products!.ForEach(p => Console.WriteLine($"{p}"));
-            });
-            thread.Start();
+            products!.ForEach(p => Console.WriteLine($"{p}"));
         }
 
         public static void BudgetInOrOut(in string path)
