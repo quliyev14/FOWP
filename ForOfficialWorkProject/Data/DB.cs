@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using ForOfficialWorkProject.Models;
+﻿using ForOfficialWorkProject.Models;
 
 namespace ForOfficialWorkProject.DB
 {
@@ -10,19 +9,15 @@ namespace ForOfficialWorkProject.DB
         public static List<T>? JsonRead<T>(string path)
         {
             lock (_sync)
-            {
                 return File.Exists(path)
                 ? NetJSON.NetJSON.Deserialize<List<T>>(File.ReadAllText(path))
                 : throw new FileNotFoundException(nameof(path));
-            }
         }
 
         public static void ProductWriteLog(in string log, List<Product> products)
         {
             lock (_sync)
-            {
                 WriteLog(log, products);
-            } 
         }
 
         private static void WriteLog(in string log, List<Product> products)
@@ -36,14 +31,13 @@ namespace ForOfficialWorkProject.DB
 
         public static void JsonWrite(string path, in string log, List<Product> products)
         {
+            var jsonOptions = new JsonSerializerOptions() { WriteIndented = true };
             if (!File.Exists(path))
             {
-                File.WriteAllText(path, JsonSerializer.Serialize(products, new JsonSerializerOptions() { WriteIndented = true }));
+                File.WriteAllText(path, JsonSerializer.Serialize(products, jsonOptions));
                 products = JsonRead<Product>(path)!;
-                File.WriteAllText(path, JsonSerializer.Serialize(products, new JsonSerializerOptions() { WriteIndented = true }));
             }
-            else
-                File.WriteAllText(path, JsonSerializer.Serialize(products, new JsonSerializerOptions() { WriteIndented = true }));
+            File.WriteAllText(path, JsonSerializer.Serialize(products, jsonOptions));
             ProductWriteLog(log, products);
         }
 

@@ -1,5 +1,4 @@
-﻿using System;
-namespace ForOfficialWorkProject.Models
+﻿namespace ForOfficialWorkProject.Models
 {
     //Product class => {
     //1)prop => name,firma-name,#code,color,age-range or size-range,count,count in packet,price

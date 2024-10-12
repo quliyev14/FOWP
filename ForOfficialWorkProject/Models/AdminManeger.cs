@@ -4,19 +4,19 @@ namespace ForOfficialWorkProject.Models
 {
     public static class AdminManeger
     {
-        public static void Add(string xlpath, string log, string jsonpath, string pathLog, string mailAdress, string mailSubject, List<Product> products)
+        public static void Add(string xlpath, string log, string jsonpath, string mailAdress, string mailSubject, List<Product> products)
         {
             if (products is null)
                 throw new ArgumentNullException("Object is null");
 
             var th = new Thread(() =>
             {
-                AddWithThread(xlpath, log, jsonpath, pathLog, mailAdress, mailSubject, products);
+                AddWithThread(xlpath, log, jsonpath, mailAdress, mailSubject, products);
             });
             th.Start();
         }
 
-        private static void AddWithThread(string xlpath, string log, string jsonpath, string pathLog, string mailAdress, string mailSubject, List<Product> products)
+        private static void AddWithThread(string xlpath, string log, string jsonpath, string mailAdress, string mailSubject, List<Product> products)
         {
             DB.DB.JsonWrite(jsonpath, log, products);
             DB.DB.XlWrite(xlpath, jsonpath);

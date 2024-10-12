@@ -1,5 +1,4 @@
-﻿using System;
-namespace ForOfficialWorkProject.Exceptions
+﻿namespace ForOfficialWorkProject.Exceptions
 {
     public class ArgumentMailNullException : Exception
     {
