@@ -21,22 +21,22 @@ namespace ForOfficialWorkProject.Models
             DB.DB.JsonWrite(jsonpath, log, products);
             DB.DB.XlWrite(xlpath, jsonpath);
 
+            //foreach (var product in products)
+            //    Service.MailIsSend(mailAdress,
+            //                       mailSubject,
+            //                       $" {product.Id}.  " +
+            //                       $" Code:{product.Code}  " +
+            //                       $" Firma name: {product.Firma}  " +
+            //                       $" Name: {product.Name}  " +
+            //                       $" Color: {product.Color}  " +
+            //                       $" Min age: {product.AgeRangeMin}  " +
+            //                       $" Max age: {product.AgeRangeMax}  " +
+            //                       $" Count: {products.Count}  " +
+            //                       $" Ici: {product.CountInPacket}-li,lu  " +
+            //                       $" Umumi gelen eded sayi: [{product.Count * product.CountInPacket}]  " +
+            //                       $" Price: {product.Price:C}  ");
             foreach (var product in products)
-            {
-                Service.MailIsSend(mailAdress,
-                                   mailSubject,
-                                   $" {product.Id}.  " +
-                                   $" Code:{product.Code}  " +
-                                   $" Firma name: {product.Firma}  " +
-                                   $" Name: {product.Name}  " +
-                                   $" Color: {product.Color}  " +
-                                   $" Min age: {product.AgeRangeMin}  " +
-                                   $" Max age: {product.AgeRangeMax}  " +
-                                   $" Count: {products.Count}  " +
-                                   $" Ici: {product.CountInPacket}-li,lu  " +
-                                   $" Umumi gelen eded sayi: [{product.Count * product.CountInPacket}]  " +
-                                   $" Price: {product.Price:C}  ");
-            }
+                Service.MailIsSend(mailAdress, mailSubject, product.ToString());
         }
 
         public static void Delete(in string path, Product @object)

@@ -27,9 +27,11 @@
             Count = count;
             CountInPacket = countInPacket;
             Price = price;
+            dateTime = DateTime.Today;
         }
 
         public string Id { get; set; } = default!;
+        public DateTime dateTime { get; init; } = default!;
         public string? Name { get; init; } = default!;
         public string? Firma { get; init; } = default;
         public string? Code { get; set; } = default!;
@@ -39,9 +41,16 @@
         public int Count { get; set; } = default!;
         public int CountInPacket { get; set; } = default!;
         public double Price { get; set; } = default!;
-         
+
         public override string ToString() => $"{Id}. {Name} /{Firma} /Code: {Code} " +
                                              $"/Color: {Color} /Min age: {AgeRangeMin} /Max age: {AgeRangeMax} " +
-                                             $"/Count: {Count} /Count in packet: {CountInPacket} /Price: {Price}\n";
+                                             $"/Count: {Count} /Count in packet: {CountInPacket} /Price: {Price}  " +
+                                             $"{dateTime.Day}/{dateTime.Month}/{dateTime.Year} " +
+                                             $"{dateTime.Hour}:{dateTime.Minute}:{dateTime.Second}\n";
+
+        //public override string ToString() => $"{Id}. {Name} /{Firma} /Code: {Code} " +
+        //                                     $"/Color: {Color} /Min age: {AgeRangeMin} /Max age: {AgeRangeMax} " +
+        //                                     $"/Count: {Count} /Count in packet: {CountInPacket} /Price: {Price}  " +
+        //                                     $"{dateTime}";
     }
 }
