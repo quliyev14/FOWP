@@ -23,8 +23,8 @@ internal class Program
             new Product( "Jeans", "F-star", "F-000", "Black", 4, 9, 20,6, 4),
         };
 
-        File.WriteAllText(path_product, JsonSerializer.Serialize(products,new JsonSerializerOptions() { WriteIndented = true}), Encoding.UTF8);
-        Console.WriteLine("Successfuly");
+        //File.WriteAllText(path_product, JsonSerializer.Serialize(products,new JsonSerializerOptions() { WriteIndented = true}), Encoding.UTF8);
+        //Console.WriteLine("Successfuly");
 
         //Console.WriteLine(product.ToString());
         //Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
