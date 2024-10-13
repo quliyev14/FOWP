@@ -4,29 +4,34 @@ namespace ForOfficialWorkProject.Models
 {
     public static class AdminManeger
     {
-        public static void Add(string xlpath, string log, string jsonpath, string mailAdress, string mailSubject, List<Product> products)
+        public static void Add(string xlpath, string log, string jsonpath,
+                               string mailAdress, string mailSubject,
+                               IEnumerable<Product> objects) 
         {
-            if (products is null)
+            if (objects is null)
                 throw new ArgumentNullException("Object is null");
 
             var th = new Thread(() =>
             {
-                AddWithThread(xlpath, log, jsonpath, mailAdress, mailSubject, products);
+                AddWithThread(xlpath, log, jsonpath, mailAdress, mailSubject, objects);
             });
             th.Start();
         }
 
-        private static void AddWithThread(string xlpath, string log, string jsonpath, string mailAdress, string mailSubject, List<Product> products)
+        private static void AddWithThread(string xlpath, string log, string jsonpath,
+                                          string mailAdress, string mailSubject,
+                                          IEnumerable<Product> objects)
         {
-            DB.DB.JsonWrite(jsonpath, log, products);
-            DB.DB.XlWrite(xlpath, jsonpath);
-            products.ForEach(p => Service.MailIsSend(mailAdress, mailSubject, p.ToString()));
+            DB.DB.JsonWrite(jsonpath, log, objects);
+            //DB.DB.XlWrite(xlpath, jsonpath);
+            foreach (var p in objects)
+                Service.MailIsSend(mailAdress, mailSubject, p.ToString());
         }
 
         public static void Delete(in string path, in string log, Product product)
         {
             var jp = DB.DB.JsonRead<Product>(path) ?? new List<Product>();
-            jp.Remove(product);
+            //jp.Remove(product);
             DB.DB.JsonWrite(path, log, jp);
             Console.WriteLine("Operation succesfully");
         }

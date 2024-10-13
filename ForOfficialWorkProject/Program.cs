@@ -29,10 +29,10 @@ internal class Program
         //Console.WriteLine(product.ToString());
         //Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
 
-        //AdminManeger.Add(path_xl, products_log, path_product, adress, mail_subject, products);
+        AdminManeger.Add(path_xl, products_log, path_product, adress, mail_subject, products);
 
 
-        AdminManeger.Delete(path_product, products_log, new Product("Jeans", "F-star", "F-000", "Black", 4, 9, 20, 6, 0));
+        //AdminManeger.Delete(path_product, products_log, new Product("Jeans", "F-star", "F-000", "Black", 4, 9, 20, 6, 0));
 
 
         //DB.XlRead(path_xl);
