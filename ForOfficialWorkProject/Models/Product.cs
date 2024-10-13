@@ -30,8 +30,8 @@
             dateTime = DateTime.Today;
         }
 
-        public string Id { get; set; } = default!;
-        public DateTime dateTime { get; init; } = default!;
+        public string Id { get; private set; } = default!;
+        private DateTime dateTime { get; init; } = default!;
         public string? Name { get; init; } = default!;
         public string? Firma { get; init; } = default;
         public string? Code { get; set; } = default!;
