@@ -31,6 +31,10 @@ internal class Program
 
         //AdminManeger.Add(path_xl, products_log, path_product, adress, mail_subject, products);
 
+
+        AdminManeger.Delete(path_product, products_log, new Product("Jeans", "F-star", "F-000", "Black", 4, 9, 20, 6, 0));
+
+
         //DB.XlRead(path_xl);
         //AdminManeger.AllShow(path_product);
         //AdminManeger.ALlShow(path_product);

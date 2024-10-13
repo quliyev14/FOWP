@@ -20,28 +20,15 @@ namespace ForOfficialWorkProject.Models
         {
             DB.DB.JsonWrite(jsonpath, log, products);
             DB.DB.XlWrite(xlpath, jsonpath);
-
-            //foreach (var product in products)
-            //    Service.MailIsSend(mailAdress,
-            //                       mailSubject,
-            //                       $" {product.Id}.  " +
-            //                       $" Code:{product.Code}  " +
-            //                       $" Firma name: {product.Firma}  " +
-            //                       $" Name: {product.Name}  " +
-            //                       $" Color: {product.Color}  " +
-            //                       $" Min age: {product.AgeRangeMin}  " +
-            //                       $" Max age: {product.AgeRangeMax}  " +
-            //                       $" Count: {products.Count}  " +
-            //                       $" Ici: {product.CountInPacket}-li,lu  " +
-            //                       $" Umumi gelen eded sayi: [{product.Count * product.CountInPacket}]  " +
-            //                       $" Price: {product.Price:C}  ");
-            foreach (var product in products)
-                Service.MailIsSend(mailAdress, mailSubject, product.ToString());
+            products.ForEach(p => Service.MailIsSend(mailAdress, mailSubject, p.ToString()));
         }
 
-        public static void Delete(in string path, Product @object)
+        public static void Delete(in string path, in string log, Product product)
         {
-            throw new NotImplementedException();
+            var jp = DB.DB.JsonRead<Product>(path) ?? new List<Product>();
+            jp.Remove(product);
+            DB.DB.JsonWrite(path, log, jp);
+            Console.WriteLine("Operation succesfully");
         }
 
         public static void Edit(in string path, Product @object)
@@ -52,14 +39,13 @@ namespace ForOfficialWorkProject.Models
         public static void Find(in string xlpath, string name)
         {
             DB.DB.XlRead(xlpath);
-
         }
 
         public static void AllShow(string path)
         {
             var products = File.Exists(path)
             ? DB.DB.JsonRead<Product>(path)!.ToList()
-            ?? throw new InvalidOperationException("Products could not be read!")
+            ?? new List<Product>()
             : throw new FileNotFoundException(nameof(path));
 
             products!.ForEach(p => Console.WriteLine($"{p}"));
