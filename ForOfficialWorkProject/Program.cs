@@ -38,7 +38,11 @@ internal class Program
         //AdminManeger.Delete(product_path, product_log, new Product("Jeans", "F-star", "F-000", "Black", 4, 9, 20, 6, 0));
 
 
+<<<<<<< HEAD
         AdminManeger.Search("K", product_path);
+=======
+        AdminManeger.Find(product_path, "a");
+>>>>>>> 0229f6d238a20686b7cc69cf631bd92bf747bb0e
 
         Console.ReadKey();
     }
