@@ -9,9 +9,9 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        string product_path = "products.json"; 
+        string product_path = "products.json";
         string product_log = "product.log";
-        string mail = "elgun.q2003@gmail.com"; 
+        string mail = "elgun.q2003@gmail.com";
         string mail_subject = "Yeni gelen mallarin siyahisi";
 
         //Console.WriteLine(new GmailService("elgun2003@gmail.com","eeee1111"));
@@ -27,10 +27,10 @@ internal class Program
         //Console.WriteLine(product.ToString());
         //Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
 
-        //AdminManeger.Add(path_xl, product_log, product_path, mail, mail_subject, products);
+        AdminManeger.Add(product_log, product_path, mail, mail_subject, products);
 
 
-        AdminManeger.AllShow(product_path);
+        //AdminManeger.AllShow(product_path);
 
 
 
