@@ -27,7 +27,8 @@ internal class Program
         //Console.WriteLine(product.ToString());
         //Console.WriteLine(new Admin("Elgun", "Quliyev", new GmailService("elgun2003@gmail.com", "abcd1234")));
 
-        AdminManeger.Add(product_log, product_path, mail, mail_subject, products);
+
+        //AdminManeger.Add(product_log, product_path, mail, mail_subject, products);
 
 
         //AdminManeger.AllShow(product_path);
