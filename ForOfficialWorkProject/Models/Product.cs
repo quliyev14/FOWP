@@ -47,10 +47,5 @@
                                              $"/Count: {Count} /Count in packet: {CountInPacket} /Price: {Price}  " +
                                              $"{dateTime.Day}/{dateTime.Month}/{dateTime.Year} " +
                                              $"{dateTime.Hour}:{dateTime.Minute}:{dateTime.Second}\n";
-
-        //public override string ToString() => $"{Id}. {Name} /{Firma} /Code: {Code} " +
-        //                                     $"/Color: {Color} /Min age: {AgeRangeMin} /Max age: {AgeRangeMax} " +
-        //                                     $"/Count: {Count} /Count in packet: {CountInPacket} /Price: {Price}  " +
-        //                                     $"{dateTime}";
     }
 }

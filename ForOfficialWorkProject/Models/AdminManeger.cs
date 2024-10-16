@@ -1,4 +1,6 @@
-﻿using ForOfficialWorkProject.MS;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using ForOfficialWorkProject.Helper;
+using ForOfficialWorkProject.MS;
 
 namespace ForOfficialWorkProject.Models
 {
@@ -14,7 +16,7 @@ namespace ForOfficialWorkProject.Models
             lock (_psro)
                 AddWithThread(log, jsonpath, mailAdress, mailSubject, objects);
         }
-         
+
         private static void AddWithThread(string log, string jsonpath,
                                           string mailAdress, string mailSubject,
                                           IEnumerable<Product> objects)
@@ -49,9 +51,18 @@ namespace ForOfficialWorkProject.Models
             throw new NotImplementedException();
         }
 
-        public static void Find(in string xlpath, string name)
+        public static void Search(string search_text, in string path)
         {
+            bool result = PathCheck.OpenOrClosed(path);
 
+            if (!result) throw new FileNotFoundException(nameof(path));
+            else
+            {
+                DB.DB.JsonRead<Product>(path)
+                       .Where(p => p.Name!.Contains(search_text))
+                        .ToList()
+                        .ForEach(c => Console.WriteLine(c));
+            }
         }
 
         public static void BudgetInOrOut(in string path)

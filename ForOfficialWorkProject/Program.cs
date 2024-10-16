@@ -18,7 +18,7 @@ internal class Program
 
         var products = new List<Product>
         {
-            new Product( "Jeans", "F-star", "F-000", "Black", 4, 9, 20,6, 4),
+            new Product( "Kofta", "Zara", "F-01-22", "White",11, 15, 15,5, 3),
         };
 
         //File.WriteAllText(product_path, JsonSerializer.Serialize(products, new JsonSerializerOptions() { WriteIndented = true }), Encoding.UTF8);
@@ -38,7 +38,7 @@ internal class Program
         //AdminManeger.Delete(product_path, product_log, new Product("Jeans", "F-star", "F-000", "Black", 4, 9, 20, 6, 0));
 
 
-        //AdminManeger.Find(product_path, "a");
+        AdminManeger.Search("K", product_path);
 
         Console.ReadKey();
     }

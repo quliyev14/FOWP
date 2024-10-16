@@ -1,4 +1,5 @@
-﻿using ForOfficialWorkProject.Models;
+﻿using ForOfficialWorkProject.Helper;
+using ForOfficialWorkProject.Models;
 
 namespace ForOfficialWorkProject.DB
 {
@@ -9,7 +10,7 @@ namespace ForOfficialWorkProject.DB
         public static IEnumerable<T> JsonRead<T>(string path)
         {
             lock (_psro)
-                return File.Exists(path)
+                return PathCheck.OpenOrClosed(path)
                 ? NetJSON.NetJSON.Deserialize<List<T>>(File.ReadAllText(path))
                 : throw new FileNotFoundException(nameof(path));
         }
@@ -19,7 +20,6 @@ namespace ForOfficialWorkProject.DB
             lock (_psro)
                 WriteLog<T>(log, objects);
         }
-
 
         private static void WriteLog<T>(in string log, IEnumerable<T> objects)
         {
@@ -38,7 +38,8 @@ namespace ForOfficialWorkProject.DB
         public static void JsonWrite<T>(string path, in string log, IEnumerable<T> objects)
         {
             var jsonOptions = new JsonSerializerOptions() { WriteIndented = true };
-            if (!File.Exists(path))
+            bool result = PathCheck.OpenOrClosed(path);
+            if (!result)
             {
                 File.WriteAllText(path, JsonSerializer.Serialize(objects, jsonOptions));
                 objects = JsonRead<T>(path)!;
