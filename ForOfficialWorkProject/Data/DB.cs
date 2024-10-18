@@ -20,10 +20,7 @@ namespace ForOfficialWorkProject.DB
             {
                 var enumerator = objects.GetEnumerator();
                 while (enumerator.MoveNext())
-                {
-                    var ec = enumerator.Current;
-                    sw.WriteLine($"{ec}");
-                }
+                    sw.WriteLine($"{enumerator.Current}");
                 enumerator.Dispose();
             }
         }
@@ -31,8 +28,7 @@ namespace ForOfficialWorkProject.DB
         public static void JsonWrite<T>(string path, in string log, IEnumerable<T> objects)
         {
             var jsonOptions = new JsonSerializerOptions() { WriteIndented = true };
-            bool result = PathCheck.OpenOrClosed(path);
-            if (!result)
+            if (!PathCheck.OpenOrClosed(path))
             {
                 File.WriteAllText(path, JsonSerializer.Serialize(objects, jsonOptions));
                 objects = JsonRead<T>(path)!;

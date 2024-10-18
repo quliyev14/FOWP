@@ -4,6 +4,7 @@ global using System.Text.Json;
 global using System.Net;
 global using System.Net.Mail;
 using ForOfficialWorkProject.Models;
+using ForOfficialWorkProject.Helper;
 
 internal class Program
 {
@@ -22,17 +23,13 @@ internal class Program
         };
 
 
-
-
-        //AdminManeger.Add(product_log, product_path, mail, mail_subject, products);
+        AdminManeger.Add(product_log, product_path, mail, mail_subject, products);
 
 
         //AdminManeger.AllShow(product_path);
 
 
-
         //AdminManeger.Delete(product_path, product_log, new Product("Jeans", "F-star", "F-000", "Black", 4, 9, 20, 6, 0));
-
 
 
         Console.ReadKey();
