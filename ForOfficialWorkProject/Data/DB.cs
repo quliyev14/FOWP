@@ -7,19 +7,12 @@ namespace ForOfficialWorkProject.DB
     {
         private static readonly object _psro = new object();
 
-        public static IEnumerable<T> JsonRead<T>(string path)
-        {
-            lock (_psro)
-                return PathCheck.OpenOrClosed(path)
-                ? NetJSON.NetJSON.Deserialize<List<T>>(File.ReadAllText(path))
+        public static IEnumerable<T> JsonRead<T>(string path) =>
+                PathCheck.OpenOrClosed(path)
+                ? NetJSON.NetJSON.Deserialize<IEnumerable<T>>(File.ReadAllText(path))
                 : throw new FileNotFoundException(nameof(path));
-        }
 
-        public static void ProductWriteLog<T>(in string log, IEnumerable<T> objects)
-        {
-            lock (_psro)
-                WriteLog<T>(log, objects);
-        }
+        public static void ProductWriteLog<T>(in string log, IEnumerable<T> objects) => WriteLog<T>(log, objects);
 
         private static void WriteLog<T>(in string log, IEnumerable<T> objects)
         {
