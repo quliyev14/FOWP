@@ -36,7 +36,7 @@ namespace ForOfficialWorkProject.Models
 
             var enumerator = products.GetEnumerator();
 
-            while (products.GetEnumerator().MoveNext())
+            while (enumerator.MoveNext())
                 Console.WriteLine($"{enumerator.Current}");
         }
 
