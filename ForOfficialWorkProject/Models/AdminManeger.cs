@@ -50,18 +50,16 @@ namespace ForOfficialWorkProject.Models
                  .ForEach(c => Console.WriteLine($"{c}"));
         }
 
-        public static void Delete(in string path, in string log)
+        public static void Delete(in string path, in string log, string id)
         {
-            var jp = DB.DB.JsonRead<Product>(path) ?? new List<Product>();
-            DB.DB.JsonWrite(path, log, jp);
+            var jr = DB.DB.JsonRead<Product>(path).ToList() ?? throw new ArgumentNullException("Argument is null Exception");
+            if (!PathCheck.OpenOrClosed(path)) throw new FileNotFoundException(nameof(path));
+            var productRemove = jr.FirstOrDefault(p => p.Id == id) ?? throw new ArgumentException("Argument Exception");
+            jr.Remove(productRemove);
+            DB.DB.JsonWrite(path, log, jr);
         }
 
         public static void Edit(in string path, Product @object)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void BudgetInOrOut(in string path)
         {
             throw new NotImplementedException();
         }
