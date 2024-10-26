@@ -18,7 +18,6 @@ internal class Program
         string mail_subject = "Yeni gelen mallarin siyahisi";
 
 
-        //Console.WriteLine(new GmailService("empty","1234"));
 
         var products = new List<Product>
         {
