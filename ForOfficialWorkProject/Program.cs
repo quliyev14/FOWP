@@ -24,18 +24,21 @@ internal class Program
             new Product( "Kofta", "Zara", "F-01-22", "White",11, 15, 15,5, 3),
         };
 
-        DB.JsonWrite(product_path, product_log, products);
-        DB.JsonRead<Product>(product_path);
-        AdminManeger.Add(product_log, product_path, mail, mail_subject, products);
-        AdminManeger.Delete(product_path, product_log, "f6d5175e-62c9-4d12-8fee-e5f0c5f0a5a6");
-        AdminManeger.AllShow(product_path);
-        AdminManeger.Edit(product_path, new Product());//
-        AdminManeger.Search("K", product_path);
-        GmailAndPasswordCheck.GPCheck(ForOfficialWorkProject.MS.GP.Gmail, "empty@gmail.com");
-        PathCheck.OpenOrClosed(product_path);
-        Service.MailIsSend(mail, mail_subject, products.ToString()!);
+        // DB.JsonWrite(product_path, product_log, products);
+        // DB.JsonRead<Product>(product_path);
+        // AdminManeger.Add(product_log, product_path, mail, mail_subject, products);
+        // AdminManeger.Delete(product_path, product_log, "f6d5175e-62c9-4d12-8fee-e5f0c5f0a5a6");
+        // AdminManeger.AllShow(product_path);
+        // AdminManeger.Edit(product_path, new Product());//
+        // AdminManeger.Search("K", product_path);
+        // GmailAndPasswordCheck.GPCheck(ForOfficialWorkProject.MS.GP.Gmail, "empty@gmail.com");
+        // PathCheck.OpenOrClosed(product_path);
+        // Service.MailIsSend(mail, mail_subject, products.ToString()!);
 
         //END 23/10/2024 23:16
+        
+        
+        
 
         Console.ReadKey();
     }
