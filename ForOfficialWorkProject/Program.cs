@@ -35,6 +35,9 @@ internal class Program
         // PathCheck.OpenOrClosed(product_path);
         // Service.MailIsSend(mail, mail_subject, products.ToString()!);
 
+        var gs = new GmailService("elgun2003@gmail.com", "200003");
+        Console.WriteLine(gs);
+        
         //END 23/10/2024 23:16
         
         
