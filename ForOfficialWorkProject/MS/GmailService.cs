@@ -10,6 +10,7 @@ namespace ForOfficialWorkProject.MS
         Password
     }
 
+
     public class GmailService
     {
         public string? gmail { get; init; } = default!;
