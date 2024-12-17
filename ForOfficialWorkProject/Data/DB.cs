@@ -37,16 +37,14 @@ namespace ForOfficialWorkProject.DB
             ProductWriteLog(log, objects);
         }
 
-        [Obsolete("This method work can't", true)]
-        private static void writelog(in string log, IEnumerable<Product> objects)
+        public static void WriteDotTxt(IEnumerable<Product> products)
         {
-            using (var sw = new StreamWriter(log, true))
+            var productDetails = string.Join(Environment.NewLine, products.Select(p => p.ToString()));
+
+            using (var fs = new FileStream("A.txt", FileMode.Append, FileAccess.Write, FileShare.None))
             {
-                foreach (var p in objects)
-                    sw.WriteLine($"packet: {p.Count}\t" +
-                                 $"/{p.CountInPacket}-li  price: /{p.Price:C}\t" +
-                                 $"/Cemi gelen eded sayi: {p.CountInPacket * p.Count}\t" +
-                                 $"/Total price => {(p.CountInPacket * p.Count) * p.Price:C}");
+                byte[] bytes = Encoding.UTF8.GetBytes(productDetails);
+                fs.Write(bytes, 0, bytes.Length);
             }
         }
     }

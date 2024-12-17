@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 
 namespace ForOfficialWorkProject.Hash;
 
-public  class DataHash
+public class DataHash
 {
     public static string PasswordHash(string password)
     {
@@ -15,4 +15,6 @@ public  class DataHash
             return sb.ToString();
         }
     }
+
+    public static bool Verify(string password, string hashedPassword) => PasswordHash(password) == hashedPassword ? true : false;
 }

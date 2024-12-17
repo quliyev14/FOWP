@@ -10,13 +10,6 @@
                        string? color, int ageRangeMin, int ageRangeMax,
                        int count, int countInPacket, double price)
         {
-            if (ageRangeMin < 0 || ageRangeMin >= 11 &&
-                ageRangeMax < 0 || ageRangeMax >= 20 &&
-                count < 0 &&
-                countInPacket < 0 &&
-                price < 0)
-                throw new ArgumentException("This have Wrong !!!");
-            //Id = Interlocked.Increment(ref ID);
             Id = Guid.NewGuid().ToString();
             Name = name;
             Firma = firmaName;
@@ -42,9 +35,9 @@
         public int CountInPacket { get; set; } = default!;
         public double Price { get; set; } = default!;
 
-        public override string ToString() => $"{Id}. {Name} /{Firma} /Code: {Code} " +
-                                             $"/Color: {Color} /Min age: {AgeRangeMin} /Max age: {AgeRangeMax} " +
-                                             $"/Count: {Count} /Count in packet: {CountInPacket} /Price: {Price}  " +
+        public override string ToString() => $"{Id} {Name}{Firma} {Code} " +
+                                             $"{Color}{AgeRangeMin}{AgeRangeMax} " +
+                                             $"{Count}{CountInPacket}{Price} " +
                                              $"{dateTime.Day}/{dateTime.Month}/{dateTime.Year} " +
                                              $"{dateTime.Hour}:{dateTime.Minute}:{dateTime.Second}\n";
     }

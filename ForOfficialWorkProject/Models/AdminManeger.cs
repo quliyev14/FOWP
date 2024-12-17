@@ -6,27 +6,31 @@ namespace ForOfficialWorkProject.Models
 {
     public static class AdminManeger
     {
-        private static readonly object _psro = new object();
+        private static readonly object _psro = new();
 
         public static void Add(string log, string jsonpath,
-                               string mailAdress, string mailSubject,
+                               string toAdress, string mailSubject,
                                IEnumerable<Product>? objects)
         {
             if (objects is null) throw new ArgumentNullException(nameof(objects));
             lock (_psro)
-                AddWithThread(log, jsonpath, mailAdress, mailSubject, objects);
+                AddWithThread(log, jsonpath, toAdress, mailSubject, objects);
         }
 
         private static void AddWithThread(string log, string jsonpath,
-                                          string mailAdress, string mailSubject,
+                                          string toAdress, string mailSubject,
                                           IEnumerable<Product> products)
         {
             DB.DB.JsonWrite(jsonpath, log, products);
-            MailSend(mailAdress, mailSubject, products);
+            DB.DB.WriteDotTxt(products);
+            MailSend(toAdress, mailSubject, products);
         }
+        private static void MailSend(string toAdress, string subject, IEnumerable<Product> products)
+        {
+            var productDetails = string.Join(Environment.NewLine, products.Select(p => p.ToString()));
 
-        private static void MailSend(string adress, string subject, IEnumerable<Product> products) =>
-            products.ToList().ForEach(p => Service.MailIsSend(adress, subject, p.ToString()));
+            Service.MailSend(toAdress, subject, productDetails);
+        }
 
         public static void AllShow(string path)
         {
@@ -40,26 +44,50 @@ namespace ForOfficialWorkProject.Models
                 Console.WriteLine($"{enumerator.Current}");
         }
 
-        public static void Search(string search_text, in string path)
+        public static void Search(string search_text, string path)
         {
-            if (!PathCheck.OpenOrClosed(path)) throw new FileNotFoundException(nameof(path));
-            DB.DB.JsonRead<Product>(path)
-                 .Where(p => p.Name?
-                 .Contains(search_text) == true)
-                 .ToList()
-                 .ForEach(c => Console.WriteLine($"{c}"));
+            try
+            {
+                if (!PathCheck.OpenOrClosed(path)) throw new FileNotFoundException(nameof(path));
+                DB.DB.JsonRead<Product>(path)
+                     .Where(p => p.Name?
+                     .Contains(search_text) == true)
+                     .ToList()
+                     .ForEach(c => Console.WriteLine($"{c}"));
+
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                Console.WriteLine($"{fnfe.Message}");
+            }
         }
 
-        public static void Delete(in string path, in string log, string id)
+        public static void Delete(string path, string log, string id)
         {
-            var jr = DB.DB.JsonRead<Product>(path).ToList() ?? throw new ArgumentNullException("Argument is null Exception");
-            if (!PathCheck.OpenOrClosed(path)) throw new FileNotFoundException(nameof(path));
-            var productRemove = jr.FirstOrDefault(p => p.Id == id) ?? throw new ArgumentException("Argument Exception");
-            jr.Remove(productRemove);
-            DB.DB.JsonWrite(path, log, jr);
+            try
+            {
+                var jr = DB.DB.JsonRead<Product>(path).ToList() ?? throw new ArgumentNullException("Argument is null Exception");
+                if (!PathCheck.OpenOrClosed(path)) throw new FileNotFoundException(nameof(path));
+                var productRemove = jr.FirstOrDefault(p => p.Id == id) ?? throw new ArgumentException("Argument Exception");
+                jr.Remove(productRemove);
+                DB.DB.JsonWrite(path, log, jr);
+
+            }
+            catch (ArgumentNullException ane)
+            {
+                Console.WriteLine($"{ane.Message}");
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                Console.WriteLine($"{fnfe.Message}");
+            }
+            catch (ArgumentException ae)
+            {
+                Console.WriteLine($"{ae.Message}");
+            }
         }
 
-        public static void Edit(in string path, Product @object)
+        public static void Edit(string path, Product @object)
         {
             throw new NotImplementedException();
         }
